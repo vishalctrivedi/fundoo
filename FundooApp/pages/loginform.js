@@ -12,37 +12,35 @@ export default class LoginPage extends Component {
     }
   }
 
-  validateEmail(text, type) {
+  validateEmail(text) {
     testEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    if (type == 'email') {
-      if (testEmail.test(text)) {
-        this.setState({
-          email: text
-        })
-      }
-      else {
-        this.setState({
-          email: false
-        })
-      }
+    if (testEmail.test(text)) {
+      this.setState({
+        email: text
+      })
+    }
+    else {
+      this.setState({
+        email: false
+      })
     }
   }
 
-  validatePassword(text, type) {
+
+  validatePassword(text) {
     testPassword = /^[a-zA-Z]\w{3,14}$/
-    if (type == 'password') {
-      if (testPassword.test(text)) {
-        this.setState({
-          password: text
-        })
-      }
-      else {
-        this.setState({
-          password: false
-        })
-      }
+    if (testPassword.test(text)) {
+      this.setState({
+        password: text
+      })
+    }
+    else {
+      this.setState({
+        password: false
+      })
     }
   }
+
 
   submit() {
 
@@ -68,19 +66,17 @@ export default class LoginPage extends Component {
 
         <TextInput style={[styles.inputBox,
         !this.state.email ? styles.error : null]}
-        onChangeText={(text) => this.validateEmail(text, 'email')}
+          onChangeText={(text) => this.validateEmail(text)}
           placeholder="Email"
           placeholderTextColor='#B6B6B6'
-          //onChangeText={(email) => this.setState({email})}
         />
 
         <TextInput style={[styles.inputBox,
         !this.state.password ? styles.error : null]}
-          onChangeText={(text) => this.validatePassword(text, 'password')}
+          onChangeText={(text) => this.validatePassword(text)}
           placeholder="Password"
           secureTextEntry={true}
           placeholderTextColor='#B6B6B6'
-          //onChangeText={(password) => this.setState({password})}
         />
 
         <TouchableOpacity style={styles.button}

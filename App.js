@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
 import Navigation from './FundooApp/components/appNavigator';
+//import Drawer from './FundooApp/components/drawer'
+import DashBoard from './FundooApp/pages/dashboard'
 
 
 export default class App extends Component {
@@ -8,7 +10,7 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
       <StatusBar backgroundColor="#199187" barStyle="light-content" />
-        <Navigation/>
+        <DashBoard/>
       </View>
     );
   }
