@@ -1,62 +1,97 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form, DrawerLayoutAndroid, Image} from 'react-native';
+import { DrawerActions } from 'react-navigation';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Text
+} from 'react-native';
+//import LoginNew from './loginFormNew';
+import { TextInput, BorderlessButton, ScrollView } from 'react-native-gesture-handler';
+import Navig from '../components/drawerNavigator'
 
 
-var navigationView = (
-  <View>  
-    <Text>drawer</Text>
-  </View>
-);
 
 export default class DashBoard extends Component {
-  static navigationOptions={header: null}
+
   render() {
     return (
-      <DrawerLayoutAndroid
-        drawerWidth={300}
-        drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => navigationView}>
-          <TextInput style={styles.inputBox}>
-          <Image style={styles.icon}
-          source={require('../components/images/optionIcon.png')}/>
-          </TextInput>
-      </DrawerLayoutAndroid>
+      <Navig/>
+      /*<ScrollView style={styles.page}>
+        <View style={styles.topBar}>
+          <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
+            <Image style={styles.drawericon} source={require('../assets/images/drawer.png')} ></Image>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.buttonText}>Search for notes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image style={styles.gridicon} source={require('../assets/images/grid.png')} ></Image>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image style={styles.usericon} source={require('../assets/images/user.jpg')} ></Image>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>*/
     );
   }
 }
 
 
 
+
+
 const styles = StyleSheet.create({
-
-  header: {
-    alignSelf: 'stretch',
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'black',
-    paddingBottom: 10,
-    marginTop: 30,
-    marginBottom: 110,
-    borderBottomColor: '#199187',
-    borderBottomWidth: 1,
-    marginLeft: 20,
-    marginRight: 40,
+  page: {
+    backgroundColor: 'white'
   },
 
-  inputBox: {
-    alignSelf: 'stretch',
-    height: 40,
-    marginTop: 10,
-    borderColor: 'gray',
-    borderWidth: 3,
-    borderRadius: 5,
-    marginLeft: 10,
-    marginRight: 10,
+  drawericon: {
+    height: 23,
+    width: 23,
+    marginLeft:15
   },
 
-  icon:{
-    height:20,
-    width:20,
-   // paddingTop:20
+  gridicon: {
+    height: 23,
+    width: 23,
+    marginLeft:50
+  },
+
+  usericon: {
+    height: 26,
+    width: 26,
+    marginLeft:30,
+    borderRadius:60
+  },
+
+  topBar: {
+    borderColor: '#C1C1C1',
+    borderRadius: 8,
+    borderWidth: 2,
+    flexDirection: 'row',
+    marginLeft: 15,
+    marginTop: 15,
+    marginRight: 15,
+    paddingTop:8,
+    paddingBottom:8
+  },
+
+  textInput: {
+    fontSize: 18,
+    paddingLeft: 15
+  },
+
+  buttonText: {
+    fontSize: 18,
+    paddingLeft: 20
   }
+
+
+
+
+
+
+
 })

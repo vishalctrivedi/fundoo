@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form} from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form } from 'react-native';
 
 
 export default class ForgotPassword extends Component {
-  static navigationOptions={header: null}
+  static navigationOptions = { header: null }
   render() {
     return (
       <View>
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     borderBottomColor: '#199187',
     borderBottomWidth: 1,
-    marginLeft:20,
-    marginRight:40,
+    marginLeft: 20,
+    marginRight: 40,
   },
 
   inputBox: {
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
-    marginLeft:20,
-    marginRight:40,
+    marginLeft: 20,
+    marginRight: 40,
   },
 
   button: {
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     padding: 20,
     marginTop: 30,
     borderRadius: 30,
-    marginLeft:50,
-    marginRight:50,
+    marginLeft: 50,
+    marginRight: 50,
   },
 
   buttonText: {

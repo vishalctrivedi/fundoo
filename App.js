@@ -1,16 +1,17 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native'; 
 import Navigation from './FundooApp/components/appNavigator';
-//import Drawer from './FundooApp/components/drawer'
-import DashBoard from './FundooApp/pages/dashboard'
+//import DashBoard from './FundooApp/pages/dashboard';
+//import Navigation from './FundooApp/components/drawerNavigator';
+//import DrawerNavigator from './FundooApp/components/'
 
 
 export default class App extends Component {
-  render() { 
+  render() {
     return (
       <View style={styles.container}>
-      <StatusBar backgroundColor="#199187" barStyle="light-content" />
-        <DashBoard/>
+        <StatusBar backgroundColor="#199187" barStyle="light-content" />
+        <Navigation />
       </View>
     );
   }

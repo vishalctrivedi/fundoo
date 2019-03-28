@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form ,ScrollView} from 'react-native';
 
 
 export default class LoginPage extends Component {
@@ -61,7 +61,7 @@ export default class LoginPage extends Component {
   static navigationOptions = { header: null }
   render() {
     return (
-      <View>
+      <ScrollView>
         <Text style={styles.header}>Login</Text>
 
         <TextInput style={[styles.inputBox,
@@ -96,7 +96,7 @@ export default class LoginPage extends Component {
           onPress={() => this.props.navigation.navigate('ForgotPassword')}>
           <Text style={styles.forgotPasswordTextButton}>Forgot Password</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     );
   }
 }

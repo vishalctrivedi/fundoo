@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, Form } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, Form ,ScrollView} from 'react-native';
 
 
 export default class RegForm extends Component {
@@ -106,41 +106,41 @@ export default class RegForm extends Component {
   static navigationOptions = { header: null }
   render() {
     return (
-      <View>
+      <ScrollView>
         <Text style={styles.header}>Register</Text>
 
         <TextInput style={[styles.inputBox,
         !this.state.name ? styles.error : null]}
-        onChangeText={(text) => this.validateName(text, 'name')}
+          onChangeText={(text) => this.validateName(text, 'name')}
           placeholder="Name"
           placeholderTextColor='#B6B6B6'
-          //onChangeText={(name) =>this.setState({name}) }
+        //onChangeText={(name) =>this.setState({name}) }
         />
 
         <TextInput style={[styles.inputBox,
         !this.state.email ? styles.error : null]}
-        onChangeText={(text) => this.validateEmail(text, 'email')}
+          onChangeText={(text) => this.validateEmail(text, 'email')}
           placeholder="Email"
           placeholderTextColor='#B6B6B6'
-          //onChangeText={(email) =>this.setState({email}) }
+        //onChangeText={(email) =>this.setState({email}) }
         />
 
         <TextInput style={[styles.inputBox,
         !this.state.password ? styles.error : null]}
-        onChangeText={(text) => this.validatePassword(text, 'password')}
+          onChangeText={(text) => this.validatePassword(text, 'password')}
           placeholder="Password"
           secureTextEntry={true}
           placeholderTextColor='#B6B6B6'
-          //onChangeText={(password) =>this.setState({password}) }
+        //onChangeText={(password) =>this.setState({password}) }
         />
 
         <TextInput style={[styles.inputBox,
         !this.state.confirmPassword ? styles.error : null]}
-        onChangeText={(text) => this.validateConfirmPassword(text, 'confirmPassword')}
+          onChangeText={(text) => this.validateConfirmPassword(text, 'confirmPassword')}
           placeholder="Confirm Password"
           secureTextEntry={true}
           placeholderTextColor='#B6B6B6'
-          //onChangeText={(confirmPassword) =>this.setState({confirmPassword}) }
+        //onChangeText={(confirmPassword) =>this.setState({confirmPassword}) }
         />
 
         <TouchableOpacity style={styles.button}
@@ -155,7 +155,7 @@ export default class RegForm extends Component {
             <Text style={styles.loginTextButton}>Login</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   inputBox: {
     alignSelf: 'stretch',
     height: 40,
-    marginBottom: 30,
+    marginBottom: 29,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
     marginLeft: 20,
