@@ -17,10 +17,10 @@ export default class DashBoard extends Component {
 
   render() {
     return (
-      <Navig/>
-      /*<ScrollView style={styles.page}>
+      <View style={styles.page}>
+      <ScrollView>
         <View style={styles.topBar}>
-          <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()}>
+          <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}>
             <Image style={styles.drawericon} source={require('../assets/images/drawer.png')} ></Image>
           </TouchableOpacity>
           <TouchableOpacity>
@@ -33,7 +33,30 @@ export default class DashBoard extends Component {
             <Image style={styles.usericon} source={require('../assets/images/user.jpg')} ></Image>
           </TouchableOpacity>
         </View>
-      </ScrollView>*/
+      </ScrollView>
+      
+      <View style={styles.bottomBar}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('TakeNote')} >
+          <Text style={{fontSize:18,paddingRight:60}}>Take a note</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/checkBox.png')}></Image>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/brush.png')}></Image>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/mike.png')}></Image>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/photo.png')}></Image>
+        </TouchableOpacity>
+      </View>
+      </View>
     );
   }
 }
@@ -44,7 +67,8 @@ export default class DashBoard extends Component {
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    flex:1
   },
 
   drawericon: {
@@ -86,7 +110,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     paddingLeft: 20
-  }
+  },
+
+  bottomBar:{
+    flexDirection:'row',
+    borderColor:'#C1C1C1',
+    borderWidth:1,
+    padding:12
+  },
 
 
 
