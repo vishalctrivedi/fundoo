@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form ,ScrollView} from 'react-native';
-
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form, ScrollView } from 'react-native';
+import { userLogin } from "../services/userServices"
 
 export default class LoginPage extends Component {
   constructor() {
@@ -53,7 +53,13 @@ export default class LoginPage extends Component {
     }
 
     else {
-      this.props.navigation.navigate('DashBoard')
+      userLogin(this.state)
+        .then((res) => {
+          this.props.navigation.navigate("Home")
+        })
+        .catch((err) => {
+          alert("invalid email or password", err)
+        })
     }
   }
 
@@ -87,7 +93,7 @@ export default class LoginPage extends Component {
         <View style={styles.loginTextContent}>
           <Text>Not yet Registered?</Text>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('RegForm')}>
+            onPress={() => this.props.navigation.navigate('Register')}>
             <Text style={styles.loginTextButton}>Register</Text>
           </TouchableOpacity>
         </View>

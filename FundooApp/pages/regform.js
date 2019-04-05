@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, Form ,ScrollView} from 'react-native';
-
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, Form, ScrollView } from 'react-native';
+import { userRegister } from "../services/userServices"
 
 export default class RegForm extends Component {
   constructor() {
@@ -11,6 +11,7 @@ export default class RegForm extends Component {
       email: '',
       password: '',
       confirmPassword: '',
+      //regState:{}
     }
   }
 
@@ -97,7 +98,20 @@ export default class RegForm extends Component {
     }
 
     else {
-      this.props.navigation.navigate('LoginPage')
+      /*var data={
+        name:this.state.name,
+        email:this.state.email,
+        password:this.state.password,
+        confirmPassword:this.state.confirmPassword
+      }*/
+      userRegister(this.state)
+        .then((res) => {
+          //console.log(res);
+          this.props.navigation.navigate("Login")
+        })
+        .catch((err) =>{
+          alert("user already present",err)
+        })
     }
   }
 
