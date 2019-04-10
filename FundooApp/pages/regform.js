@@ -82,11 +82,11 @@ export default class RegForm extends Component {
 
   submit() {
     if (this.state.name == false) {
-      alert("Name cannot be empty!");
+      alert("Invalid name!");
     }
 
     else if (this.state.email == false) {
-      alert("Email cannot be empty!")
+      alert("Invalid email!")
     }
 
     else if (this.state.password == false) {
@@ -106,11 +106,11 @@ export default class RegForm extends Component {
       }*/
       userRegister(this.state)
         .then((res) => {
-          //console.log(res);
+          console.log(res);
           this.props.navigation.navigate("Login")
         })
-        .catch((err) =>{
-          alert("user already present",err)
+        .catch((err) => {
+          alert("user already present", err)
         })
     }
   }
@@ -165,7 +165,7 @@ export default class RegForm extends Component {
         <View style={styles.loginTextContent}>
           <Text>Already a User?</Text>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('LoginPage')}>
+            onPress={() => this.props.navigation.navigate('Login')}>
             <Text style={styles.loginTextButton}>Login</Text>
           </TouchableOpacity>
         </View>

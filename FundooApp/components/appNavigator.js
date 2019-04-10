@@ -15,7 +15,7 @@ const MainNavigator = createDrawerNavigator({
 
 },
   {
-    initialRouteName: 'TakeNote'
+    initialRouteName: 'Home'
   });
 
 const Navigation = createAppContainer(MainNavigator);
