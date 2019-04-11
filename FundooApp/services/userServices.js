@@ -16,12 +16,19 @@ function userLogin(data) {
     })
 }
 
-function userForgotPassword(data){
+function userForgotPassword(data) {
     return axios(baseURL + '/forgotPassword', {
         method: 'POST',
         data: data
     })
 }
 
+function userResetPassword(data) {
+    return axios(baseURL + '/resetPassword', {
+        method: 'POST',
+        data: data
+    })
+}
 
-export { userRegister, userLogin,userForgotPassword }
+
+export { userRegister, userLogin, userForgotPassword, userResetPassword }

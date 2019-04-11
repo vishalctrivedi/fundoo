@@ -58,7 +58,7 @@ export default class LoginPage extends Component {
           this.props.navigation.navigate("Home")
         })
         .catch((err) => {
-          alert("invalid email or password", err)
+          alert("invalid email or password")
         })
     }
   }

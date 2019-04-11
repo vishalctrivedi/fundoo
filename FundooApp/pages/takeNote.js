@@ -7,23 +7,43 @@ export default class TakeNote extends Component {
     //static navigationOptions = { header: null }
     render() {
         return (
-            <View style={styles.topBar}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-                    <Image style={{ height: 25, width: 25, marginRight: 175 }} source={require('../assets/images/leftArrow.png')}></Image>
-                </TouchableOpacity>
+            <View>
+                <View style={styles.topBar}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                        <Image style={{ height: 25, width: 25 }} source={require('../assets/images/leftArrow.png')}></Image>
+                    </TouchableOpacity>
 
-                <TouchableOpacity>
-                    <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/pin.png')}></Image>
-                </TouchableOpacity>
+                    <Text>                                                        </Text>
 
-                <TouchableOpacity>
-                    <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/bell.png')}></Image>
-                </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image style={{ height: 22, width: 22, marginRight: 22 }} source={require('../assets/images/pin.png')}></Image>
+                    </TouchableOpacity>
 
-                <TouchableOpacity>
-                    <Image style={{ height: 20, width: 20, marginRight: 25, marginTop: 3 }} source={require('../assets/images/archive.png')}></Image>
-                </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image style={{ height: 22, width: 22, marginRight: 22 }} source={require('../assets/images/bell.png')}></Image>
+                    </TouchableOpacity>
 
+                    <TouchableOpacity>
+                        <Image style={{ height: 20, width: 20, marginRight: 22, }} source={require('../assets/images/archive.png')}></Image>
+                    </TouchableOpacity>
+                </View>
+
+                <TextInput style={styles.title} placeholder="Title" placeholderColor="gray"></TextInput>
+                <TextInput style={styles.note} placeholder="Note" placeholderColor="gray"></TextInput>
+
+                <View style={styles.bottomBar}>
+                    <TouchableOpacity >
+
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/checkBox.png')}></Image>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/brush.png')}></Image>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -41,5 +61,22 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8
     },
+
+    title: {
+        fontSize: 22,
+        marginLeft: 15
+    },
+
+    note: {
+        fontSize: 15,
+        marginLeft: 15
+    },
+
+    bottomBar: {
+        flexDirection: 'row',
+        position: 'relative',
+        bottom: -370,
+        justifyContent: 'center'
+    }
 
 });
