@@ -1,15 +1,42 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form, Image } from 'react-native';
+import { createNote } from "../services/userServices"
 
 
 export default class TakeNote extends Component {
     //static navigationOptions = { header: null }
+
+    constructor() {
+        super();
+        this.state = {
+            title: '',
+            note: '',
+        }
+    }
+
+    submit() {
+        if (this.state.title == "") {
+            alert("Title can not be empty")
+        }
+        else {
+            createNote(this.state)
+                .then((res) => {
+                    this.props.navigation.navigate("Home")
+                })
+                .catch((err) => {
+                    alert(err)
+                })
+        }
+
+    }
+
+
     render() {
         return (
             <View>
                 <View style={styles.topBar}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                    <TouchableOpacity onPress={() => this.submit()} >
                         <Image style={{ height: 25, width: 25 }} source={require('../assets/images/leftArrow.png')}></Image>
                     </TouchableOpacity>
 
@@ -28,21 +55,25 @@ export default class TakeNote extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <TextInput style={styles.title} placeholder="Title" placeholderColor="gray"></TextInput>
-                <TextInput style={styles.note} placeholder="Note" placeholderColor="gray"></TextInput>
+                <TextInput style={styles.title} placeholder="Title" placeholderColor="gray"
+                    onChangeText={(text) => this.setState({ title: text })} />
+
+
+                <TextInput style={styles.note} placeholder="Note" placeholderColor="gray"
+                    onChangeText={(text) => this.setState({ note: text })} />
+
+
 
                 <View style={styles.bottomBar}>
-                    <TouchableOpacity >
+                    <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
+                        <TouchableOpacity>
+                            <Image style={{ height: 28, width: 28, marginLeft: 20 }} source={require('../assets/images/add.png')}></Image>
+                        </TouchableOpacity>
 
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/checkBox.png')}></Image>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/brush.png')}></Image>
-                    </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Image style={{ height: 23, width: 23, marginRight: 20 }} source={require('../assets/images/option.png')}></Image>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );
@@ -76,7 +107,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         position: 'relative',
         bottom: -370,
-        justifyContent: 'center'
     }
 
 });

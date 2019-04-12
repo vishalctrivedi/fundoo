@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://192.168.0.37:3000'
+const baseURL = 'http://192.168.0.204:3000'
 
 function userRegister(data) {
     return axios(baseURL + '/registration', {
@@ -30,5 +30,12 @@ function userResetPassword(data) {
     })
 }
 
+function createNote(data) {
+    return axios(baseURL + '/createNote', {
+        method: 'POST',
+        data: data
+    })
+}
 
-export { userRegister, userLogin, userForgotPassword, userResetPassword }
+
+export { userRegister, userLogin, userForgotPassword, userResetPassword, createNote }
