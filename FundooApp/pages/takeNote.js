@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form, Image } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form, Image, AsyncStorage } from 'react-native';
 import { createNote } from "../services/userServices"
 
 
@@ -12,10 +12,13 @@ export default class TakeNote extends Component {
         this.state = {
             title: '',
             note: '',
+
         }
     }
 
+
     submit() {
+
         if (this.state.title == "") {
             alert("Title can not be empty")
         }

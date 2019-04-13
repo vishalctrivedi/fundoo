@@ -8,8 +8,9 @@ import {
   Text
 } from 'react-native';
 //import LoginNew from './loginFormNew';
-import { TextInput, BorderlessButton, ScrollView } from 'react-native-gesture-handler';
+import { TextInput, BorderlessButton, ScrollView, Card } from 'react-native-gesture-handler';
 import Navig from '../components/drawerNavigator'
+import CardComponent from '../components/cardComponent'
 
 
 
@@ -18,44 +19,45 @@ export default class DashBoard extends Component {
   render() {
     return (
       <View style={styles.page}>
-      <ScrollView>
-        <View style={styles.topBar}>
-          <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}>
-            <Image style={styles.drawericon} source={require('../assets/images/drawer.png')} ></Image>
+        <ScrollView>
+          <View style={styles.topBar}>
+            <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}>
+              <Image style={styles.drawericon} source={require('../assets/images/drawer.png')} ></Image>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={styles.buttonText}>Search for notes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image style={styles.gridicon} source={require('../assets/images/grid.png')} ></Image>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image style={styles.usericon} source={require('../assets/images/user.jpg')} ></Image>
+            </TouchableOpacity>
+          </View>
+          <CardComponent />
+        </ScrollView>
+
+        <View style={styles.bottomBar}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('TakeNote')} >
+            <Text style={{ fontSize: 18, paddingRight: 60 }}>Take a note</Text>
           </TouchableOpacity>
+
           <TouchableOpacity>
-            <Text style={styles.buttonText}>Search for notes</Text>
+            <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/checkBox.png')}></Image>
           </TouchableOpacity>
+
           <TouchableOpacity>
-            <Image style={styles.gridicon} source={require('../assets/images/grid.png')} ></Image>
+            <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/brush.png')}></Image>
           </TouchableOpacity>
+
           <TouchableOpacity>
-            <Image style={styles.usericon} source={require('../assets/images/user.jpg')} ></Image>
+            <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/mike.png')}></Image>
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Image style={{ height: 25, width: 25, marginRight: 25 }} source={require('../assets/images/photo.png')}></Image>
           </TouchableOpacity>
         </View>
-      </ScrollView>
-      
-      <View style={styles.bottomBar}>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('TakeNote')} >
-          <Text style={{fontSize:18,paddingRight:60}}>Take a note</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/checkBox.png')}></Image>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/brush.png')}></Image>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/mike.png')}></Image>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <Image style={{height:25,width:25,marginRight:25}} source={require('../assets/images/photo.png')}></Image>
-        </TouchableOpacity>
-      </View>
       </View>
     );
   }
@@ -68,26 +70,26 @@ export default class DashBoard extends Component {
 const styles = StyleSheet.create({
   page: {
     backgroundColor: 'white',
-    flex:1
+    flex: 1
   },
 
   drawericon: {
     height: 23,
     width: 23,
-    marginLeft:15
+    marginLeft: 15
   },
 
   gridicon: {
     height: 23,
     width: 23,
-    marginLeft:50
+    marginLeft: 50
   },
 
   usericon: {
     height: 26,
     width: 26,
-    marginLeft:30,
-    borderRadius:60
+    marginLeft: 30,
+    borderRadius: 60
   },
 
   topBar: {
@@ -98,8 +100,8 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     marginRight: 15,
-    paddingTop:8,
-    paddingBottom:8
+    paddingTop: 8,
+    paddingBottom: 8
   },
 
   textInput: {
@@ -112,11 +114,11 @@ const styles = StyleSheet.create({
     paddingLeft: 20
   },
 
-  bottomBar:{
-    flexDirection:'row',
-    borderColor:'#C1C1C1',
-    borderWidth:1,
-    padding:12
+  bottomBar: {
+    flexDirection: 'row',
+    borderColor: '#C1C1C1',
+    borderWidth: 1,
+    padding: 12
   },
 
 
