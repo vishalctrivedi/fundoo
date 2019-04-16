@@ -110,7 +110,7 @@ export default class RegForm extends Component {
           this.props.navigation.navigate("Login")
         })
         .catch((err) => {
-          alert("user already present", err)
+          alert("Error", err)
         })
     }
   }

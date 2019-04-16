@@ -10,8 +10,8 @@ export default class TakeNote extends Component {
     constructor() {
         super();
         this.state = {
-            title: '',
-            note: '',
+            title: null,
+            note: null,
 
         }
     }
@@ -19,7 +19,7 @@ export default class TakeNote extends Component {
 
     submit() {
 
-        if (this.state.title == "") {
+        if (this.state.title == null) {
             alert("Title can not be empty")
         }
         else {
