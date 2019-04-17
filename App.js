@@ -3,7 +3,6 @@ import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
 import Navigation from './FundooApp/components/appNavigator';
 //import DashBoard from './FundooApp/pages/dashboard';
 //import Navigation from './FundooApp/components/drawerNavigator';
-//import DrawerNavigator from './FundooApp/components/'
 import TakeNote from './FundooApp/pages/takeNote'
 
 

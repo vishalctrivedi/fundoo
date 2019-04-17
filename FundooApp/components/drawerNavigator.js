@@ -1,29 +1,27 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, StatusBar ,DrawerLayoutAndroid} from 'react-native';
-//import Navigation from './FundooApp/components/appNavigator';
-//import DashBoard from './FundooApp/pages/dashboard';
-//import Navigation from './FundooApp/components/drawerNavigator';
-//import DrawerNavigator from './FundooApp/components/'
+import { createDrawerNavigator, createAppContainer } from 'react-navigation'
+import DashBoard from '../pages/dashboard'
+import Login from '../pages/loginform'
 
+navigationOptions = { header: null };
+const MyDrawer = createDrawerNavigator(
+  {
+    Notes: { screen: DashBoard },
+    Login:{screen:Login}
+  },
 
-export default class Navig extends Component {
-    render() {
-        var navigationView = (
-            <View style={{ flex: 1, backgroundColor: '#fff' }}>
-                <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>I'm in the Drawer!</Text>
-            </View>
-        );
+  {
+    navigationOptions: {
+      gesturesEnabled: false,
+    },
 
-        return (
-            <DrawerLayoutAndroid
-                drawerWidth={300}
-                drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => navigationView}>
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text style={{ margin: 10, fontSize: 15, textAlign: 'right' }}>Hello</Text>
-                    <Text style={{ margin: 10, fontSize: 15, textAlign: 'right' }}>World!</Text>
-                </View>
-            </DrawerLayoutAndroid>
-        );
-    }
-}
+    initialRouteName: "Notes",
+    contentOptions: {
+      activeTintColor: "#199187",
+
+    },
+    drawerPosition: 'left',
+
+  }
+);
+const Drawer = createAppContainer(MyDrawer);
+export default Drawer; 

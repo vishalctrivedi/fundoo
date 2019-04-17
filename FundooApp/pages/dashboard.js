@@ -1,30 +1,41 @@
 import React, { Component } from 'react';
-import { DrawerActions } from 'react-navigation';
 import {
   View,
   StyleSheet,
   TouchableOpacity,
   Image,
   Text,
+  FlatList,
+  ScrollView
 } from 'react-native';
-//import LoginNew from './loginFormNew';
-import { TextInput, BorderlessButton, ScrollView, Card, FlatList } from 'react-native-gesture-handler';
-import Navig from '../components/drawerNavigator'
-import CardComponent from '../components/cardComponent'
-import Cards from '../components/flatList'
-
+//import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import { DrawerActions } from 'react-navigation'
 
 
 export default class DashBoard extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       datasource: [],
-      isLoading: true
+      isLoading: true,
+      columns: 2,
+      key: 1,
+      click: false,
     }
 
   };
+
+  grid(event) {
+    this.setState({ click: !(this.state.click) })
+    let { columns, key } = this.state
+    columns = columns === 2 ? 1 : 2
+    this.setState({
+      columns: columns,
+      key: key + 1
+    })
+  }
+
 
   componentDidMount() {
     const url = 'http://192.168.0.204:3000/getAllNotes'
@@ -33,7 +44,7 @@ export default class DashBoard extends Component {
       .then((responseJson) => {
         this.setState({
           datasource: responseJson.result,
-          isLoading: false
+          isLoading: false,
         })
       })
       .catch((err) => {
@@ -59,6 +70,7 @@ export default class DashBoard extends Component {
 
 
   render() {
+    const { columns, key } = this.state
     return (
       <View style={styles.page}>
         <View style={styles.topBar}>
@@ -71,20 +83,30 @@ export default class DashBoard extends Component {
           <TouchableOpacity onPress={() => this.componentDidMount()} >
             <Image style={styles.refreshicon} source={require('../assets/images/refresh.png')} ></Image>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Image style={styles.gridicon} source={require('../assets/images/grid.png')} ></Image>
-          </TouchableOpacity>
+          {
+            this.state.click ?
+
+              (<TouchableOpacity onPress={(event) => this.grid(event)}>
+                <Image style={styles.gridicon} source={require('../assets/images/grid.png')} ></Image>
+              </TouchableOpacity>)
+              :
+              (<TouchableOpacity onPress={(event) => this.grid(event)}>
+                <Image style={styles.gridicon} source={require('../assets/images/list.png')} ></Image>
+              </TouchableOpacity>
+              )
+          }
           <TouchableOpacity>
             <Image style={styles.usericon} source={require('../assets/images/user.jpg')} ></Image>
           </TouchableOpacity>
         </View>
         <ScrollView>
-          <View>
-            <FlatList
-              data={this.state.datasource}
-              renderItem={this.renderItem}
-                    /*numColumns={numColumns}*/ />
-          </View>
+          <FlatList
+            key={key}
+            data={this.state.datasource}
+            renderItem={this.renderItem}
+            numColumns={columns}
+            keyExtractor={(item, index) => { index }}
+          />
         </ScrollView>
 
 

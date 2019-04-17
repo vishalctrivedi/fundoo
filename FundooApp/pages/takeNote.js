@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form, Image, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { createNote } from "../services/userServices"
 
 
@@ -25,7 +25,7 @@ export default class TakeNote extends Component {
         else {
             createNote(this.state)
                 .then((res) => {
-                    this.props.navigation.navigate("Home")
+                    this.props.navigation.navigate("Notes")
                 })
                 .catch((err) => {
                     alert(err)

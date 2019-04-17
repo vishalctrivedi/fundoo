@@ -55,10 +55,11 @@ export default class LoginPage extends Component {
     else {
       userLogin(this.state)
         .then((res) => {
-          this.props.navigation.navigate("Home")
+          console.warn(res.data.result._id);
+          this.props.navigation.navigate("Notes")
         })
         .catch((err) => {
-          alert("invalid email or password")
+          alert(err)
         })
     }
   }
