@@ -6,7 +6,6 @@ navigationOptions = { header: null };
 const MyDrawer = createDrawerNavigator(
   {
     Notes: { screen: DashBoard },
-    Login:{screen:Login}
   },
 
   {

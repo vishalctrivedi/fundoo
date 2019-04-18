@@ -13,8 +13,8 @@ import { DrawerActions } from 'react-navigation'
 
 
 export default class DashBoard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       datasource: [],
@@ -22,6 +22,7 @@ export default class DashBoard extends Component {
       columns: 2,
       key: 1,
       click: false,
+      userEmail:this.props.navigation.state.userEmail
     }
 
   };
@@ -78,7 +79,7 @@ export default class DashBoard extends Component {
             <Image style={styles.drawericon} source={require('../assets/images/drawer.png')} ></Image>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={styles.buttonText}>Search for notes</Text>
+            <Text style={styles.buttonText}>{this.state.userEmail}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.componentDidMount()} >
             <Image style={styles.refreshicon} source={require('../assets/images/refresh.png')} ></Image>

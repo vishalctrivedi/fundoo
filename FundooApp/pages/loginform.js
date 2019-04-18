@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Form, ScrollView } from 'react-native';
 import { userLogin } from "../services/userServices"
+import Notes from '../pages/dashboard'
 
 export default class LoginPage extends Component {
   constructor() {
@@ -55,8 +56,7 @@ export default class LoginPage extends Component {
     else {
       userLogin(this.state)
         .then((res) => {
-          console.warn(res.data.result._id);
-          this.props.navigation.navigate("Notes")
+          this.props.navigation.navigate("Notes",{userEmail:this.state.email})
         })
         .catch((err) => {
           alert(err)
