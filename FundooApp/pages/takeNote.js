@@ -2,17 +2,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { createNote } from "../services/userServices"
+import { archiveNotes } from "../services/userServices"
 
 
 export default class TakeNote extends Component {
     //static navigationOptions = { header: null }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             title: null,
             note: null,
-
+            userEmail: this.props.navigation.state.params.userEmail,
+            archive: false
         }
     }
 
@@ -34,6 +36,22 @@ export default class TakeNote extends Component {
 
     }
 
+    submitArchive() {
+        if (this.state.title == null) {
+            alert("Title can not be empty")
+        }
+        else {
+            this.state.archive = true
+            archiveNotes(this.state)
+                .then((res) => {
+                    this.props.navigation.navigate("Notes")
+                })
+                .catch((err) => {
+                    alert(err)
+                })
+        }
+    }
+
 
     render() {
         return (
@@ -53,7 +71,7 @@ export default class TakeNote extends Component {
                         <Image style={{ height: 22, width: 22, marginRight: 22 }} source={require('../assets/images/bell.png')}></Image>
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.submitArchive()} >
                         <Image style={{ height: 20, width: 20, marginRight: 22, }} source={require('../assets/images/archive.png')}></Image>
                     </TouchableOpacity>
                 </View>

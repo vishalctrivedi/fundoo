@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 //import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import { DrawerActions } from 'react-navigation'
+import { getNotes } from "../services/userServices"
 
 
 export default class DashBoard extends Component {
@@ -22,7 +23,7 @@ export default class DashBoard extends Component {
       columns: 2,
       key: 1,
       click: false,
-      userEmail:this.props.navigation.state.userEmail
+      userEmail: this.props.navigation.state.params.userEmail,
     }
 
   };
@@ -37,8 +38,7 @@ export default class DashBoard extends Component {
     })
   }
 
-
-  componentDidMount() {
+  /*componentDidMount() {
     const url = 'http://192.168.0.204:3000/getAllNotes'
     fetch(url)
       .then((response) => response.json())
@@ -51,12 +51,26 @@ export default class DashBoard extends Component {
       .catch((err) => {
         console.log(err)
       })
+  }*/
+
+
+  componentDidMount() {
+    getNotes(this.state)
+      .then((res) => {
+        this.setState({
+          datasource: res.data.result,
+          isLoading: false,
+        })
+      })
+      .catch((err) => {
+        alert(err)
+      })
   }
 
   renderItem = ({ item }) => {
     return (
       <ScrollView style={{ backgroundColor: '#E6E6E6', borderRadius: 10, marginLeft: 5, marginTop: 5, marginRight: 5 }}>
-        <TouchableOpacity >
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('TakeNote')}>
           <View style={{ padding: 5 }}>
             <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>{item.title}</Text>
           </View>
@@ -79,7 +93,7 @@ export default class DashBoard extends Component {
             <Image style={styles.drawericon} source={require('../assets/images/drawer.png')} ></Image>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={styles.buttonText}>{this.state.userEmail}</Text>
+            <Text style={styles.buttonText}>Search your note</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.componentDidMount()} >
             <Image style={styles.refreshicon} source={require('../assets/images/refresh.png')} ></Image>
@@ -97,7 +111,7 @@ export default class DashBoard extends Component {
               )
           }
           <TouchableOpacity>
-            <Image style={styles.usericon} source={require('../assets/images/user.jpg')} ></Image>
+            <Text style={styles.usericon}>V</Text>
           </TouchableOpacity>
         </View>
         <ScrollView>
@@ -112,7 +126,7 @@ export default class DashBoard extends Component {
 
 
         <View style={styles.bottomBar}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('TakeNote')} >
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('TakeNote', { userEmail: this.state.userEmail })} >
             <Text style={{ fontSize: 18, paddingRight: 60 }}>Take a note</Text>
           </TouchableOpacity>
 
@@ -166,6 +180,7 @@ const styles = StyleSheet.create({
   },
 
   usericon: {
+    color: 'grey',
     height: 26,
     width: 26,
     marginLeft: 18,

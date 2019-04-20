@@ -37,7 +37,7 @@ function createNote(data) {
     })
 }
 
-function getAllNotes(data) {
+function getNotes(data) {
     return axios(baseURL + '/getAllNotes', {
         method: 'POST',
         data: data
@@ -45,4 +45,10 @@ function getAllNotes(data) {
 }
 
 
-export { userRegister, userLogin, userForgotPassword, userResetPassword, createNote, getAllNotes }
+function archiveNotes() {
+    return axios(baseURL + '/archiveNotes', {
+        method: 'GET',
+    })
+}
+
+export { userRegister, userLogin, userForgotPassword, userResetPassword, createNote, getNotes, archiveNotes }
